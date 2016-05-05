@@ -65,6 +65,24 @@ public class GUIKontroler {
 		zatvoriDodajKursGui();
 
 	}
+	
+	public static void obrisiKurs(int index) {
+		int obrisi = JOptionPane.showConfirmDialog(gui.getContentPane(), "Da li ste sigurni da zelite da obrisete izabrani kurs?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+		
+		if (obrisi == JOptionPane.YES_OPTION) {
+			
+			DefaultTableModel dtm = (DefaultTableModel) gui.getTable().getModel();
+			dtm.removeRow(index);
+			JOptionPane.showMessageDialog(gui.getContentPane(), "Kurs je uspesno obrisan", "Poruka", JOptionPane.INFORMATION_MESSAGE);
+			
+			String tekst = "Izbrisan je red sa indeksom: " + index + System.lineSeparator();
+			dodajUPoljeZaIspis(tekst);
+			
+		} else {
+			JOptionPane.showMessageDialog(gui.getContentPane(), "Kurs nije obrisan", "Poruka", JOptionPane.ERROR_MESSAGE);
+		}
+	
+	}
 
 	/**
 	 * Launch the application.

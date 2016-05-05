@@ -34,6 +34,8 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 public class MenjacnicaGUI extends JFrame {
@@ -62,11 +64,10 @@ public class MenjacnicaGUI extends JFrame {
 	Menjacnica menjacnica;
 	private JMenuItem mntmAbout;
 
-
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -78,15 +79,23 @@ public class MenjacnicaGUI extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				GUIKontroler.exit();
+			}
+
+		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource(
 				"/icons/15542105-Illustration-of-a-glossy-3d-golden-euro-currency-Stock-Vector-euro-money-symbol.jpg")));
 		setTitle("Menjacnica");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
@@ -168,6 +177,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmDodajKurs() {
 		if (mntmDodajKurs == null) {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.prikaziDodajKursGui();
+				}
+			});
 		}
 		return mntmDodajKurs;
 	}
@@ -189,6 +203,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnDodajKurs() {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
+			btnDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.prikaziDodajKursGui();
+				}
+			});
 			btnDodajKurs.setPreferredSize(new Dimension(99, 23));
 		}
 		return btnDodajKurs;
@@ -342,19 +361,18 @@ public class MenjacnicaGUI extends JFrame {
 		}
 	}
 
-
-	
 	private JMenuItem getMntmAbout() {
 		if (mntmAbout == null) {
 			mntmAbout = new JMenuItem("About");
 			mntmAbout.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+
 					GUIKontroler.about();
 				}
 			});
-		
+
 		}
 		return mntmAbout;
 	}
+
 }

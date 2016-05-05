@@ -11,4 +11,7 @@ public interface MenjacnicaInterfejs {
 
 	public Kurs pronadjiKurs(String nazivValute, GregorianCalendar datum);
 
+	public void ucitajIzFajla(String putanja);
+
+	public void sacuvajUFajl(String putanja);
 }
